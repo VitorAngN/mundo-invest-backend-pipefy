@@ -65,6 +65,7 @@
 
 - [ ] `git status` revisado.
 - [ ] Arquivos temporarios ignorados.
+- [ ] GitHub Actions configurado para testes.
 - [ ] Commit criado com mensagem clara.
 - [ ] Repositorio remoto criado.
 - [ ] Push realizado.

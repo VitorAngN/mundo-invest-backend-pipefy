@@ -30,6 +30,7 @@ Evolucoes:
 - configurar variaveis de ambiente reais;
 - melhorar logs estruturados;
 - adicionar health check com banco.
+- manter CI rodando testes automatizados a cada push/pull request.
 
 Motivo:
 

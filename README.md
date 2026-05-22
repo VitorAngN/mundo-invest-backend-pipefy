@@ -125,6 +125,8 @@ http://127.0.0.1:8000/docs
 pytest -v
 ```
 
+O repositorio tambem inclui workflow de GitHub Actions em `.github/workflows/tests.yml` para rodar os testes automaticamente em push e pull request.
+
 Cobertura atual de cenarios:
 
 - criacao de cliente;
