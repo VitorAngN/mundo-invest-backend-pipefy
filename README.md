@@ -54,7 +54,7 @@ Por isso, a solucao prioriza:
 
 Mais detalhes em [docs/empresa.md](docs/empresa.md).
 
-## Estrutura planejada
+## Estrutura do projeto
 
 ```text
 app/
@@ -89,6 +89,8 @@ Principais documentos:
 - [Decisoes arquiteturais](docs/11-decisoes-arquiteturais.md)
 - [Checklist de entrega](docs/12-checklist-entrega.md)
 - [Seguranca e autenticacao](docs/13-seguranca-autenticacao.md)
+- [Validacao final](docs/14-validacao-final.md)
+- [Git e GitHub](docs/15-git-github.md)
 
 ## Como rodar localmente
 

@@ -18,9 +18,11 @@ Esta pasta organiza a etapa de planejamento antes da implementacao.
 12. [11 - Decisoes arquiteturais](11-decisoes-arquiteturais.md)
 13. [12 - Checklist de entrega](12-checklist-entrega.md)
 14. [13 - Seguranca e autenticacao](13-seguranca-autenticacao.md)
-15. [Pesquisa sobre a empresa](empresa.md)
-16. [Arquitetura AWS](arquitetura-aws.md)
-17. [Roteiro de video](roteiro-video.md)
+15. [14 - Validacao final](14-validacao-final.md)
+16. [15 - Git e GitHub](15-git-github.md)
+17. [Pesquisa sobre a empresa](empresa.md)
+18. [Arquitetura AWS](arquitetura-aws.md)
+19. [Roteiro de video](roteiro-video.md)
 
 ## Como usar na defesa
 

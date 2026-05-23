@@ -2,53 +2,56 @@
 
 ## Antes de implementar
 
-- [ ] Requisitos lidos.
-- [ ] Escopo definido.
-- [ ] Backlog Scrum criado.
-- [ ] Arquitetura definida.
-- [ ] Contratos de API definidos.
-- [ ] Modelo de dados definido.
-- [ ] Plano de testes definido.
-- [ ] Mutations Pipefy documentadas.
+- [x] Requisitos lidos.
+- [x] Escopo definido.
+- [x] Backlog Scrum criado.
+- [x] Arquitetura definida.
+- [x] Contratos de API definidos.
+- [x] Modelo de dados definido.
+- [x] Plano de testes definido.
+- [x] Mutations Pipefy documentadas.
 
 ## Implementacao
 
-- [ ] Projeto Python criado.
-- [ ] Ambiente virtual documentado.
-- [ ] Configuracao centralizada em `Settings`.
-- [ ] FastAPI configurado.
-- [ ] Banco local configurado.
-- [ ] Model `Cliente` criado.
-- [ ] Model `WebhookEvent` criado.
-- [ ] Constraints unicas de email e `event_id` testadas.
-- [ ] `POST /clientes` implementado.
-- [ ] `createCard` estruturado.
-- [ ] `POST /webhooks/pipefy/card-updated` implementado.
-- [ ] Idempotencia por `event_id` implementada.
-- [ ] Regra de prioridade implementada.
-- [ ] `updateCardField` estruturado.
+- [x] Projeto Python criado.
+- [x] Ambiente virtual documentado.
+- [x] Configuracao centralizada em `Settings`.
+- [x] FastAPI configurado.
+- [x] Banco local configurado.
+- [x] Model `Cliente` criado.
+- [x] Model `WebhookEvent` criado.
+- [x] Constraints unicas de email e `event_id` testadas.
+- [x] `POST /clientes` implementado.
+- [x] `createCard` estruturado.
+- [x] `POST /webhooks/pipefy/card-updated` implementado.
+- [x] Idempotencia por `event_id` implementada.
+- [x] Regra de prioridade implementada.
+- [x] `updateCardField` estruturado.
 
 ## Testes
 
-- [ ] Teste de criacao de cliente.
-- [ ] Teste de prioridade alta.
-- [ ] Teste de prioridade normal.
-- [ ] Teste de evento duplicado.
-- [ ] Teste de email invalido.
-- [ ] Testes especificos do `PipefyService`.
-- [ ] `pytest -v` passando.
+- [x] Teste de criacao de cliente.
+- [x] Teste de prioridade alta.
+- [x] Teste de prioridade normal.
+- [x] Teste de evento duplicado.
+- [x] Teste de email invalido.
+- [x] Testes especificos do `PipefyService`.
+- [x] Testes de constraints de banco.
+- [x] Testes de autenticacao opcional.
+- [x] `pytest -v` passando.
 
 ## Documentacao
 
-- [ ] README com execucao local.
-- [ ] README com exemplos de curl.
-- [ ] README com testes.
-- [ ] README com Pipefy GraphQL.
-- [ ] README com visao AWS.
-- [ ] Estrategia de seguranca/autenticacao documentada.
-- [ ] Autenticacao opcional por `API_ACCESS_TOKEN` testada.
-- [ ] Docs de arquitetura revisados.
-- [ ] Roteiro de video revisado.
+- [x] README com execucao local.
+- [x] README com exemplos de curl.
+- [x] README com testes.
+- [x] README com Pipefy GraphQL.
+- [x] README com visao AWS.
+- [x] Estrategia de seguranca/autenticacao documentada.
+- [x] Autenticacao opcional por `API_ACCESS_TOKEN` testada.
+- [x] Docs de arquitetura revisados.
+- [x] Roteiro de video revisado.
+- [x] Relatorio de validacao criado.
 
 ## Video
 
@@ -63,11 +66,12 @@
 
 ## Git e envio
 
-- [ ] `git status` revisado.
-- [ ] Arquivos temporarios ignorados.
-- [ ] GitHub Actions configurado para testes.
-- [ ] Commit criado com mensagem clara.
+- [x] `git status` revisado localmente.
+- [x] Arquivos temporarios ignorados.
+- [x] GitHub Actions configurado para testes.
+- [x] Commits locais criados com mensagens claras.
 - [ ] Repositorio remoto criado.
 - [ ] Push realizado.
 - [ ] Link conferido.
 - [ ] Formulario preenchido.
+
