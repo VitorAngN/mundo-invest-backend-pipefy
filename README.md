@@ -2,18 +2,7 @@
 
 API backend em Python para gerenciamento de clientes, persistencia local e simulacao de integracao com Pipefy via GraphQL.
 
-Este projeto foi estruturado para o teste tecnico de Desenvolvedor Backend do Mundo Invest.
-
-## Status do projeto
-
-O projeto esta organizado para evoluir por etapas:
-
-1. Planejamento e documentacao.
-2. Implementacao dos fluxos obrigatorios.
-3. Testes automatizados.
-4. Revisao final, video e entrega.
-
-A ideia e demonstrar nao apenas codigo funcionando, mas tambem capacidade de pensar em produto, manutencao, escalabilidade e operacao.
+Projeto desenvolvido para o teste tecnico de Desenvolvedor Backend do Mundo Invest.
 
 ## Tecnologias
 
@@ -25,100 +14,58 @@ A ideia e demonstrar nao apenas codigo funcionando, mas tambem capacidade de pen
 - Pytest
 - GraphQL
 
-## Funcionalidades implementadas
+## Funcionalidades
 
-- Cadastro de cliente com validacao de payload.
+- Cadastro de cliente em `POST /clientes`.
+- Validacao de campos obrigatorios e e-mail.
 - Persistencia local em SQLite.
 - Status inicial `Aguardando Análise`.
-- Payload GraphQL `createCard` estruturado conforme Pipefy.
-- Webhook simulado de card atualizado.
+- Simulacao de payload Pipefy com mutation `createCard`.
+- Processamento de webhook em `POST /webhooks/pipefy/card-updated`.
 - Idempotencia por `event_id`.
-- Regra de prioridade por patrimonio.
-- Payload GraphQL `updateCardField` estruturado conforme Pipefy.
-- Constraints unicas para `cliente_email` e `event_id`.
-- Autenticacao opcional por `API_ACCESS_TOKEN`.
-- Testes automatizados cobrindo fluxos obrigatorios e casos extras.
+- Regra de prioridade por patrimonio:
+  - `valor_patrimonio >= 200000`: `prioridade_alta`
+  - `valor_patrimonio < 200000`: `prioridade_normal`
+- Atualizacao local do cliente para `Processado`.
+- Simulacao de payload Pipefy com mutation `updateCardField`.
+- Autenticacao opcional por token via `API_ACCESS_TOKEN`.
+- Testes automatizados.
 
-## Contexto
-
-O Mundo Invest e uma plataforma de planejamento financeiro ligada ao ecossistema EWZ, com foco em organizacao financeira, investimentos, tecnologia e atendimento consultivo.
-
-Por isso, a solucao prioriza:
-
-- clareza de regra de negocio;
-- rastreabilidade de eventos;
-- idempotencia de webhooks;
-- isolamento da integracao Pipefy;
-- documentacao objetiva;
-- caminho simples para evolucao em AWS.
-
-Mais detalhes em [docs/empresa.md](docs/empresa.md).
-
-## Estrutura do projeto
+## Estrutura
 
 ```text
 app/
-  routes/           # camada HTTP
-  services/         # casos de uso e regras de negocio
-  repositories/     # acesso ao banco
-  models.py         # entidades SQLAlchemy
-  schemas.py        # contratos Pydantic
-tests/              # testes automatizados
-docs/               # documentacao de produto, arquitetura e operacao
+  routes/          # endpoints HTTP
+  services/        # regras de negocio e integracao Pipefy simulada
+  repositories/    # acesso ao banco
+  models.py        # modelos SQLAlchemy
+  schemas.py       # schemas Pydantic
+tests/             # testes automatizados
 ```
-
-## Documentacao
-
-Antes da implementacao final, o projeto foi modelado em documentos de produto, requisitos, Scrum, arquitetura, contratos de API, dados, testes, operacao e evolucao.
-
-Indice completo em [docs/README.md](docs/README.md).
-
-Principais documentos:
-
-- [Visao do produto](docs/00-visao-do-produto.md)
-- [Requisitos e escopo](docs/01-requisitos-e-escopo.md)
-- [Planejamento Scrum](docs/02-planejamento-scrum.md)
-- [Arquitetura planejada](docs/03-arquitetura-planejada.md)
-- [Contratos de API](docs/04-contratos-api.md)
-- [Modelagem de dados](docs/05-modelagem-dados.md)
-- [Plano de testes](docs/06-plano-de-testes.md)
-- [Mapeamento Pipefy GraphQL](docs/07-mapeamento-pipefy-graphql.md)
-- [Padroes de codigo](docs/08-padroes-de-codigo.md)
-- [Operacao local](docs/09-operacao-local.md)
-- [Roadmap de escalabilidade](docs/10-roadmap-escalabilidade.md)
-- [Decisoes arquiteturais](docs/11-decisoes-arquiteturais.md)
-- [Checklist de entrega](docs/12-checklist-entrega.md)
-- [Seguranca e autenticacao](docs/13-seguranca-autenticacao.md)
-- [Validacao final](docs/14-validacao-final.md)
-- [Git e GitHub](docs/15-git-github.md)
 
 ## Como rodar localmente
 
-Use Python 3.11 ou 3.12. Neste PC, o comando recomendado e `py -3.11`, porque o Python 3.14 ainda pode quebrar dependencias nativas do Pydantic/FastAPI.
+Use Python 3.11 ou 3.12.
 
-Crie e ative o ambiente virtual:
+No Windows:
 
 ```powershell
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
-```
-
-Instale as dependencias:
-
-```powershell
 pip install -r requirements.txt
-```
-
-Suba a API:
-
-```powershell
 uvicorn app.main:app --reload
 ```
 
-Abra a documentacao automatica:
+Documentacao automatica:
 
 ```text
 http://127.0.0.1:8000/docs
+```
+
+Health check:
+
+```text
+http://127.0.0.1:8000/health
 ```
 
 ## Como rodar os testes
@@ -126,22 +73,6 @@ http://127.0.0.1:8000/docs
 ```powershell
 pytest -v
 ```
-
-O repositorio tambem inclui workflow de GitHub Actions em `.github/workflows/tests.yml` para rodar os testes automaticamente em push e pull request.
-
-Cobertura atual de cenarios:
-
-- criacao de cliente;
-- validacao de email;
-- validacao de strings vazias;
-- email duplicado;
-- config por ambiente;
-- constraints de banco;
-- mutations Pipefy;
-- token opcional;
-- prioridade alta, normal e limite;
-- idempotencia de webhook;
-- cliente inexistente no webhook.
 
 ## Autenticacao opcional
 
@@ -183,16 +114,6 @@ curl.exe -X POST "http://127.0.0.1:8000/clientes" `
   -d "{\"cliente_nome\":\"Joao Silva\",\"cliente_email\":\"joao.silva@example.com\",\"tipo_solicitacao\":\"Atualizacao cadastral\",\"valor_patrimonio\":250000}"
 ```
 
-O cliente e salvo localmente com status inicial:
-
-```text
-Aguardando Analise
-```
-
-No codigo final, o texto pode manter o acento do enunciado: `Aguardando Análise`.
-
-A resposta tambem inclui o payload GraphQL que seria enviado ao Pipefy.
-
 ## Endpoint: webhook Pipefy card updated
 
 ```http
@@ -213,32 +134,93 @@ Com token opcional ativado, adicione:
 -H "Authorization: Bearer token_de_teste"
 ```
 
-Regras:
-
-- `valor_patrimonio >= 200000`: `prioridade_alta`
-- `valor_patrimonio < 200000`: `prioridade_normal`
-- `event_id` duplicado nao e reprocessado
-- cliente atualizado para `Processado`
-
 ## Pipefy GraphQL
 
-As mutations devem ficar isoladas em `PipefyService`, sem chamada real ao Pipefy nesta versao do teste.
+As mutations ficam em `app/services/pipefy_service.py`.
 
-Resumo:
+### createCard
 
-- `createCard` cria o card simulado do cliente.
-- `updateCardField` atualiza status e prioridade.
+```graphql
+mutation CreateClientCard($input: CreateCardInput!) {
+  createCard(input: $input) {
+    card {
+      id
+    }
+  }
+}
+```
 
-Detalhes em [docs/07-mapeamento-pipefy-graphql.md](docs/07-mapeamento-pipefy-graphql.md).
+Variaveis simuladas:
+
+```json
+{
+  "input": {
+    "pipe_id": "PIPE_ID_AQUI",
+    "title": "Joao Silva",
+    "fields_attributes": [
+      {
+        "field_id": "cliente_nome",
+        "field_value": "Joao Silva"
+      },
+      {
+        "field_id": "cliente_email",
+        "field_value": "joao.silva@example.com"
+      },
+      {
+        "field_id": "tipo_solicitacao",
+        "field_value": "Atualizacao cadastral"
+      },
+      {
+        "field_id": "valor_patrimonio",
+        "field_value": "250000"
+      }
+    ]
+  }
+}
+```
+
+### updateCardField
+
+```graphql
+mutation UpdateClientCard($statusInput: UpdateCardFieldInput!, $priorityInput: UpdateCardFieldInput!) {
+  status: updateCardField(input: $statusInput) {
+    success
+  }
+  priority: updateCardField(input: $priorityInput) {
+    success
+  }
+}
+```
+
+Variaveis simuladas:
+
+```json
+{
+  "statusInput": {
+    "card_id": "card_456",
+    "field_id": "status_cliente",
+    "new_value": "Processado"
+  },
+  "priorityInput": {
+    "card_id": "card_456",
+    "field_id": "prioridade",
+    "new_value": "prioridade_alta"
+  }
+}
+```
+
+Referencias oficiais:
+
+- https://api-docs.pipefy.com/reference/mutations/createCard/
+- https://api-docs.pipefy.com/reference/inputObjects/CreateCardInput
+- https://developers.pipefy.com/reference/create-a-card-with-the-required-fields-fulfilled
+- https://api-docs.pipefy.com/reference/mutations/updateCardField/
+- https://api-docs.pipefy.com/reference/inputObjects/UpdateCardFieldInput
+- https://developers.pipefy.com/reference/fields
 
 ## Visao de producao na AWS
 
-Em producao, esta API poderia ser exposta via API Gateway e executada em Lambda. Para persistencia, RDS PostgreSQL faria sentido quando houver necessidade de relacionamentos, transacoes e consultas SQL; DynamoDB tambem seria uma boa opcao para idempotencia por `event_id`.
+Em producao, a API poderia ser exposta pelo API Gateway e executada em Lambda. A persistencia poderia usar RDS PostgreSQL quando houver necessidade de relacionamento, transacoes e consultas SQL, ou DynamoDB para acessos por chave, como `cliente_email` e `event_id`.
 
-Para webhooks, uma arquitetura mais resiliente usaria API Gateway recebendo o evento, Lambda para validacao inicial, SQS para desacoplar o processamento e um worker Lambda para aplicar regras de negocio e chamar a API real do Pipefy. Logs e metricas ficariam no CloudWatch, e tokens do Pipefy ficariam no Secrets Manager.
+Para webhooks, uma arquitetura mais resiliente usaria API Gateway recebendo o evento, Lambda para validacao inicial, SQS para desacoplar o processamento e um worker Lambda para aplicar a regra de negocio e chamar a API real do Pipefy. Logs e metricas ficariam no CloudWatch, e tokens reais do Pipefy ficariam no Secrets Manager.
 
-Mais detalhes em [docs/arquitetura-aws.md](docs/arquitetura-aws.md).
-
-## Video de defesa
-
-Roteiro sugerido em [docs/roteiro-video.md](docs/roteiro-video.md).
