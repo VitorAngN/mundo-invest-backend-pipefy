@@ -31,7 +31,7 @@ jobs:
         run: |
           npx --yes @redocly/cli@latest lint _site/api/openapi.json --skip-rule=operation-operationId --skip-rule=info-license
           npx --yes @redocly/cli@latest build-docs _site/api/openapi.json -o _site/api/index.html --title "Gestão de Clientes + Pipefy — API"
-      - run: cp site/index.html _site/
+      - run: cp site/index.html site/og.png _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
