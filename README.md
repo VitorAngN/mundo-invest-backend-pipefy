@@ -1,5 +1,7 @@
 # Client Management & Pipefy Integration
 
+[![CI](https://github.com/VitorAngN/mundo-invest-backend-pipefy/actions/workflows/ci.yml/badge.svg)](https://github.com/VitorAngN/mundo-invest-backend-pipefy/actions/workflows/ci.yml)
+
 API backend em Python para gerenciamento de clientes, persistencia local e simulacao de integracao com Pipefy via GraphQL.
 
 Projeto desenvolvido para o teste tecnico de Desenvolvedor Backend do Mundo Invest.
@@ -66,6 +68,13 @@ Health check:
 
 ```text
 http://127.0.0.1:8000/health
+```
+
+## Como rodar com Docker
+
+```bash
+docker build -t mundo-invest-api .
+docker run -p 8000:8000 mundo-invest-api
 ```
 
 ## Como rodar os testes
